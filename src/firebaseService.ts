@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { Injectable } from '@angular/core';
+import { Dog } from './dog';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA91XeK7UDUK1BUtoCElPuMOEeLfCxJCso',
@@ -21,11 +22,11 @@ const db = getFirestore(app);
 export class FirebaseService {
   constructor() {}
 
-  async addDog() {
+  async addDog(dog: Dog) {
     try {
       const docRef = await addDoc(collection(db, 'dogs'), {
-        name: 'Reksio',
-        born: 2016,
+        name: dog.name,
+        born: dog.born,
       });
       console.log('Document written with ID: ', docRef.id);
     } catch (e) {
