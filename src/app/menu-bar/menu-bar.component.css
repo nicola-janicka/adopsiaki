@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+}
+
+.main-logo {
+  max-width: 100px; /* Restrict the logo size */
+  height: auto;
+}
