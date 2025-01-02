@@ -10,7 +10,7 @@ export const routes: Routes = [
   { path: 'adoption-form', component: AdoptionFormComponent },
   { path: 'adoption', component: AdoptionPageComponent },
   { path: 'dogs', component: DogsPageComponent },
-  { path: 'main', component: MainPageComponent },
+  { path: 'home', component: MainPageComponent },
   { path: 'new-dog-form', component: NewDogFormComponent },
   { path: 'support-us', component: SupportUsPageComponent },
 ];

@@ -1,10 +1,13 @@
 <div class="menu-container">
   <div>
-    <img
-      class="main-logo"
-      src="https://static.vecteezy.com/system/resources/previews/050/514/616/non_2x/black-and-white-dog-logo-on-white-background-vector.jpg"
-      alt="dog logo"
-    />
+    <a href="/home">
+      <img
+        class="main-logo"
+        src="https://static.vecteezy.com/system/resources/previews/050/514/616/non_2x/black-and-white-dog-logo-on-white-background-vector.jpg"
+        alt="dog logo"
+      />
+    </a>
+
     <button (click)="goToPage('/dogs')" mat-button>Dogs</button>
     <mat-menu #aboveMenu="matMenu" yPosition="above">
       <button mat-menu-item>Item 1</button>
