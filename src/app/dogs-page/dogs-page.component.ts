@@ -1,4 +1,9 @@
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  Router,
+  RouterOutlet,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,4 +13,6 @@ import { Component } from '@angular/core';
   templateUrl: './dogs-page.component.html',
   styleUrl: './dogs-page.component.css',
 })
-export class DogsPageComponent {}
+export class DogsPageComponent {
+  constructor(private router: Router) {}
+}
