@@ -4,6 +4,7 @@
   justify-content: space-between;
   padding: 0 20px;
   height: 100px;
+  color: #555;
 }
 
 .menu-container > div {
@@ -15,8 +16,7 @@
   max-width: 80px;
   height: auto;
   margin-right: 20px;
-  background-color: yellow;
-  color: #e1306c;
+  color: #555;
 }
 
 .social-media {

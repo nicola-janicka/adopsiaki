@@ -26,7 +26,7 @@ import { NgFor } from '@angular/common';
 export class DogsPageComponent {
   dogs = [
     {
-      name: 'Buddy',
+      name: 'Alex',
       breed: 'Mixed Breed',
       image:
         'https://www.kundelek.s2.zetohosting.pl/alex/467211437_975720694596960_8437642344523265684_n/',
@@ -55,4 +55,8 @@ export class DogsPageComponent {
     },
   ];
   constructor(private router: Router) {}
+
+  goToPage(pageAddress: string) {
+    this.router.navigate([pageAddress]);
+  }
 }
