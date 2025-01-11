@@ -48,7 +48,7 @@ export class DogsPageComponent {
     },
     {
       name: 'Charlie',
-      breed: 'Mied Breed',
+      breed: 'Mixed Breed',
       image:
         'https://foto1.napaluchu.waw.pl/reksio/scale/1600/0/files/big/012000441/ab739a9dc7b33cfc.jpg',
       description: 'An energetic dog ready to be part of your family.',
