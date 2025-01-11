@@ -1,5 +1,12 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  QuerySnapshot,
+} from 'firebase/firestore';
 import { Injectable } from '@angular/core';
 import { Dog } from './dog';
 
@@ -26,11 +33,20 @@ export class FirebaseService {
     try {
       const docRef = await addDoc(collection(db, 'dogs'), {
         name: dog.name,
-        born: dog.born,
+        age: dog.age,
+        gender: dog.gender,
+        weight: dog.weight,
       });
       console.log('Document written with ID: ', docRef.id);
     } catch (e) {
       console.error('Error adding document: ', e);
     }
+  }
+
+  async getDogs() {
+    const querySnapshot = await getDocs(collection(db, 'dogs'));
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, ' => ', doc.data());
+    });
   }
 }
