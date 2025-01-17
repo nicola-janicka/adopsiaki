@@ -4,47 +4,15 @@
       <img class="main-logo" src="logoDog.png" alt="dog logo" />
     </a>
 
-    <button (click)="goToPage('/dogs')" mat-button>Dogs</button>
-    <mat-menu #aboveMenu="matMenu" yPosition="above">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
-
-    <button
-      (click)="goToPage('/adoption')"
-      mat-button
-      [matMenuTriggerFor]="belowMenu"
-    >
-      Adoption
-    </button>
-    <mat-menu #belowMenu="matMenu" yPosition="below">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
-
-    <button
-      (click)="goToPage('/adoption-form')"
-      mat-button
-      [matMenuTriggerFor]="beforeMenu"
-    >
-      Adoption Form
-    </button>
-    <mat-menu #beforeMenu="matMenu" xPosition="before">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
-
-    <button
-      (click)="goToPage('/support-us')"
-      mat-button
-      [matMenuTriggerFor]="afterMenu"
-    >
-      Support Us
-    </button>
-    <mat-menu #afterMenu="matMenu" xPosition="after">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
-    </mat-menu>
+    <div *ngFor="let menuItem of menuItems">
+      <button mat-button [routerLink]="[menuItem.path]">
+        {{ menuItem.label }}
+      </button>
+      <mat-menu #aboveMenu="matMenu" yPosition="below">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu>
+    </div>
   </div>
 
   <div class="social-media">

@@ -12,7 +12,7 @@
   background: #333;
   color: #efefef;
   display: flex;
-  position: fixed;
+  position: sticky;
 }
 
 .footer div {

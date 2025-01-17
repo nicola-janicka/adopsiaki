@@ -7,6 +7,7 @@ import {
   RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-menu-bar',
@@ -17,6 +18,7 @@ import {
     RouterLink,
     RouterLinkActive,
     RouterOutlet,
+    NgFor,
   ],
   templateUrl: './menu-bar.component.html',
   styleUrl: './menu-bar.component.css',
@@ -27,4 +29,11 @@ export class MenuBarComponent {
   goToPage(pageAddress: string) {
     this.router.navigate([pageAddress]);
   }
+
+  menuItems = [
+    { label: 'Dogs', path: '/dogs', position: 'above' },
+    { label: 'Adoption', path: '/adoption', position: 'below' },
+    { label: 'Adoption Form', path: '/adoption-form', position: 'before' },
+    { label: 'Support Us', path: '/support-us', position: 'after' },
+  ];
 }
