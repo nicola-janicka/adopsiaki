@@ -5,12 +5,14 @@ import { DogsPageComponent } from './dogs-page/dogs-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { NewDogFormComponent } from './new-dog-form/new-dog-form.component';
 import { SupportUsPageComponent } from './support-us-page/support-us-page.component';
+import { AboutDogComponent } from './about-dog/about-dog.component';
 
 export const routes: Routes = [
   { path: 'adoption-form', component: AdoptionFormComponent },
   { path: 'adoption', component: AdoptionPageComponent },
   { path: 'dogs', component: DogsPageComponent },
-  { path: 'main', component: MainPageComponent },
+  { path: 'home', component: MainPageComponent },
   { path: 'new-dog-form', component: NewDogFormComponent },
   { path: 'support-us', component: SupportUsPageComponent },
+  { path: 'about-dog', component: AboutDogComponent },
 ];

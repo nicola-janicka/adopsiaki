@@ -1,0 +1,85 @@
+.dog-adoption-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 2 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.dog-summary {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dog-summary .title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #13237f;
+}
+
+.dog-photo {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.dog-photo img {
+  width: 600px;
+  height: auto;
+  object-fit: cover;
+
+  border: 1px solid #ddd;
+}
+
+.dog-details {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.dog-info {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #555;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.dog-info .icon {
+  margin-right: 10px;
+  color: #3f51b5;
+  font-size: 20px;
+}
+
+.dog-description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  padding: 20px;
+
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+.actions {
+  text-align: center;
+}
+
+.info-button {
+  background-color: #3f51b5;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 30px;
+  font-size: 16px;
+  text-transform: capitalize;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.info-button:hover {
+  background-color: #303f9f;
+}
