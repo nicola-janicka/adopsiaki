@@ -36,6 +36,7 @@ export class FirebaseService {
         age: dog.age,
         gender: dog.gender,
         weight: dog.weight,
+        description: dog.description,
       });
       console.log('Document written with ID: ', docRef.id);
     } catch (e) {

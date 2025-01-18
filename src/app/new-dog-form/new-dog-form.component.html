@@ -1,1 +1,26 @@
+<form [formGroup]="newDogForm" (ngSubmit)="onSubmit()">
+  <label for="dname">Dog's name:</label>
+  <input type="text" id="dname" name="dname" formControlName="dname" />
+  <label for="dage">Dog's age:</label>
+  <input type="text" id="dage" name="dage" formControlName="dage" />
 
+  <label for="dgender">Dog's gander:</label>
+  <select aria-required="true" id="type" formControlName="dgender">
+    <option value="male">male</option>
+    <option value="female">female</option></select
+  ><br />
+
+  <label for="dweight">Dog's weight in kg:</label>
+
+  <input type="number" id="dweight" name="dweight" formControlName="dweight" />
+
+  <label for="ddescription">Dog's description:</label>
+  <textarea
+    class="ddescription"
+    id="ddescription"
+    name="ddescription"
+    formControlName="ddescription"
+  ></textarea>
+
+  <button type="submit" class="submit">Submit</button>
+</form>
