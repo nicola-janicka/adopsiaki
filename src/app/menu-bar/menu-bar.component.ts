@@ -24,16 +24,25 @@ import { NgFor } from '@angular/common';
   styleUrl: './menu-bar.component.css',
 })
 export class MenuBarComponent {
-  constructor(private router: Router) {}
-
-  goToPage(pageAddress: string) {
-    this.router.navigate([pageAddress]);
-  }
-
+  adminLogged = true;
   menuItems = [
     { label: 'Dogs', path: '/dogs', position: 'above' },
     { label: 'Adoption', path: '/adoption', position: 'below' },
     { label: 'Adoption Form', path: '/adoption-form', position: 'before' },
     { label: 'Support Us', path: '/support-us', position: 'after' },
   ];
+
+  constructor(private router: Router) {
+    if (this.adminLogged) {
+      this.menuItems.push({
+        label: 'Add a Dog',
+        path: '/new-dog-form',
+        position: 'above',
+      });
+    }
+  }
+
+  goToPage(pageAddress: string) {
+    this.router.navigate([pageAddress]);
+  }
 }

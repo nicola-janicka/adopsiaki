@@ -4,11 +4,15 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   doc,
   QuerySnapshot,
 } from 'firebase/firestore';
 import { Injectable } from '@angular/core';
 import { Dog } from './dog';
+import { query } from 'firebase/firestore';
+import { where } from 'firebase/firestore';
+import { Admin } from './admin';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA91XeK7UDUK1BUtoCElPuMOEeLfCxJCso',
@@ -48,6 +52,23 @@ export class FirebaseService {
     const querySnapshot = await getDocs(collection(db, 'dogs'));
     querySnapshot.forEach((doc) => {
       console.log(doc.id, ' => ', doc.data());
+    });
+  }
+
+  // Admin login data
+
+  async getAdmin(username: string) {
+    const q = query(
+      collection(db, 'admins'),
+      where('username', '==', username)
+    );
+    const querySnaphot = await getDocs(q);
+    querySnaphot.forEach((doc) => {
+      let adminData = doc.data();
+      let admin = new Admin(adminData['username'], adminData['password']);
+      if (username === admin.username) {
+        console.log(admin);
+      }
     });
   }
 }
