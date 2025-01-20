@@ -13,6 +13,7 @@ import { Dog } from './dog';
 import { query } from 'firebase/firestore';
 import { where } from 'firebase/firestore';
 import { Admin } from './admin';
+import { AdoptionForm } from './adoptionForm';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA91XeK7UDUK1BUtoCElPuMOEeLfCxJCso',
@@ -70,5 +71,23 @@ export class FirebaseService {
         console.log(admin);
       }
     });
+  }
+
+  // Adoption forms data
+
+  async addAdoptionForm(adoptionForm: AdoptionForm) {
+    try {
+      const docRef = await addDoc(collection(db, 'adoptionForms'), {
+        dogName: adoptionForm.dname,
+        fullname: adoptionForm.fullname,
+        email: adoptionForm.email,
+        age: adoptionForm.age,
+        experience: adoptionForm.experience,
+        status: 'new',
+        createdAt: new Date(),
+      });
+    } catch (e) {
+      console.log('Error adding document ', e);
+    }
   }
 }
