@@ -14,6 +14,7 @@ import { query } from 'firebase/firestore';
 import { where } from 'firebase/firestore';
 import { Admin } from './admin';
 import { AdoptionForm } from './adoptionForm';
+import { Observable } from 'rxjs';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA91XeK7UDUK1BUtoCElPuMOEeLfCxJCso',
@@ -49,12 +50,45 @@ export class FirebaseService {
     }
   }
 
-  async getDogs() {
+  async getDogs(): Promise<Dog[]> {
+    let dogsList: Dog[] = [];
     const querySnapshot = await getDocs(collection(db, 'dogs'));
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, ' => ', doc.data());
+      // console.log(doc.id, ' => ', doc.data());
+      let data = doc.data();
+      let dog = new Dog(
+        data['name'],
+        data['breed'],
+        data['age'],
+        data['gender'],
+        data['weight'],
+        data['description']
+      );
+      dog.setID(doc.id);
+      dogsList.push(dog);
     });
+    console.log(dogsList);
+    return dogsList;
   }
+  // getDogs(): Observable<Dog[]> {
+  //   let dogsList: Dog[] = [];
+  //   const querySnapshot = await getDocs(collection(db, 'dogs'));
+  //   querySnapshot.forEach((doc) => {
+  //     // console.log(doc.id, ' => ', doc.data());
+  //     let data = doc.data();
+  //     let dog = new Dog(
+  //       data['name'],
+  //       data['age'],
+  //       data['gender'],
+  //       data['weight'],
+  //       data['description']
+  //     );
+  //     dog.setID(doc.id);
+  //     dogsList.push(dog);
+  //   });
+  //   console.log(dogsList);
+  //   return dogsList;
+  // }
 
   // Admin login data
 

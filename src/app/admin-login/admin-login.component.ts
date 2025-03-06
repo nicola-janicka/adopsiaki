@@ -31,5 +31,6 @@ export class AdminLoginComponent implements OnInit {
 
   onSubmit() {
     this.fs.getAdmin(this.adminLogin.value['username']);
+    this.fs.getDogs();
   }
 }

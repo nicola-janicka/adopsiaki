@@ -1,6 +1,8 @@
 <form [formGroup]="newDogForm" (ngSubmit)="onSubmit()">
   <label for="dname">Dog's name:</label>
   <input type="text" id="dname" name="dname" formControlName="dname" />
+  <label for="dbreed">Dog's breed:</label>
+  <input type="text" id="dbreed" name="dbreed" formControlName="dbreed" />
   <label for="dage">Dog's age:</label>
   <input type="text" id="dage" name="dage" formControlName="dage" />
 

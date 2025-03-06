@@ -38,6 +38,7 @@ export class NewDogFormComponent implements OnInit {
   ngOnInit(): void {
     this.newDogForm = this.formBuilder.nonNullable.group({
       dname: new FormControl(''),
+      dbreed: new FormControl(''),
       dage: new FormControl(''),
       dgender: new FormControl(''),
       dweight: new FormControl(''),
@@ -50,6 +51,7 @@ export class NewDogFormComponent implements OnInit {
     let formValues = this.newDogForm.value;
     let newDog = new Dog(
       formValues['dname'],
+      formValues['dbreed'],
       formValues['dage'],
       formValues['dgender'],
       formValues['dweight'],
