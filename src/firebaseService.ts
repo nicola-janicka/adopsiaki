@@ -7,6 +7,7 @@ import {
   getDoc,
   doc,
   QuerySnapshot,
+  deleteDoc,
 } from 'firebase/firestore';
 import { Injectable } from '@angular/core';
 import { Dog } from './dog';
@@ -39,10 +40,12 @@ export class FirebaseService {
     try {
       const docRef = await addDoc(collection(db, 'dogs'), {
         name: dog.name,
+        breed: dog.breed,
         age: dog.age,
         gender: dog.gender,
         weight: dog.weight,
         description: dog.description,
+        createdAt: dog.createdAt,
       });
       console.log('Document written with ID: ', docRef.id);
     } catch (e) {
@@ -62,13 +65,23 @@ export class FirebaseService {
         data['age'],
         data['gender'],
         data['weight'],
-        data['description']
+        data['description'],
+        new Date(data['createdAt'])
       );
       dog.setID(doc.id);
       dogsList.push(dog);
     });
     console.log(dogsList);
     return dogsList;
+  }
+
+  async deleteDog(id: string) {
+    try {
+      const docRef = await deleteDoc(doc(db, 'dogs', id));
+      console.log(docRef);
+    } catch (e) {
+      console.error('Error removing document: ', e);
+    }
   }
   // getDogs(): Observable<Dog[]> {
   //   let dogsList: Dog[] = [];

@@ -1,5 +1,5 @@
 <div class="cards-container">
-  <mat-card class="dog-card" *ngFor="let dog of dogs">
+  <mat-card class="dog-card" *ngFor="let dog of sortedDogs; index as i">
     <mat-card-header>
       <mat-card-title class="title">{{ dog.name }}</mat-card-title>
       <mat-card-subtitle class="subtitle">{{ dog.breed }}</mat-card-subtitle>
@@ -16,6 +16,9 @@
     <mat-card-actions class="actions">
       <button (click)="goToPage('/about-dog')" mat-button class="info-button">
         More info
+      </button>
+      <button (click)="deleteDog(dog.id, i)" class="remove-button">
+        <span class="material-symbols-outlined"> delete </span>
       </button>
     </mat-card-actions>
   </mat-card>

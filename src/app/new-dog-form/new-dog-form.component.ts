@@ -55,7 +55,8 @@ export class NewDogFormComponent implements OnInit {
       formValues['dage'],
       formValues['dgender'],
       formValues['dweight'],
-      formValues['ddescription']
+      formValues['ddescription'],
+      new Date()
     );
     console.log(newDog);
     this.fs.addDog(newDog);

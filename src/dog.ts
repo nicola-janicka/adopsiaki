@@ -1,3 +1,5 @@
+import { Timestamp } from 'firebase/firestore';
+
 export class Dog {
   id: string;
   name: string;
@@ -6,13 +8,15 @@ export class Dog {
   gender: string;
   weight: number;
   description: string;
+  createdAt: Date;
   constructor(
     name: string,
     breed: string,
     age: number,
     gender: string,
     weight: number,
-    description: string
+    description: string,
+    createdAt: Date
   ) {
     this.id = '';
     this.name = name;
@@ -21,6 +25,7 @@ export class Dog {
     this.gender = gender;
     this.weight = weight;
     this.description = description;
+    this.createdAt = createdAt;
   }
 
   setID(id: string) {

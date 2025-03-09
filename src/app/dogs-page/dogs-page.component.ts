@@ -28,36 +28,14 @@ import { OnInit } from '@angular/core';
 export class DogsPageComponent implements OnInit {
   dogs: Dog[] = [];
 
-  // dogs = [
-  //   {
-  //     name: 'Alex',
-  //     breed: 'Mixed Breed',
-  //     image:
   //       'https://www.kundelek.s2.zetohosting.pl/alex/467211437_975720694596960_8437642344523265684_n/',
-  //     description: 'A friendly and loving dog looking for a home.',
-  //   },
-  //   {
-  //     name: 'Bella',
-  //     breed: 'Mixed Breed',
-  //     image:
+
   //       'https://www.kundelek.s2.zetohosting.pl/wp-content/uploads/2024/12/471229267_1003780548457641_4068007170708030490_n.jpg',
-  //     description: 'A loyal and intelligent dog waiting for adoption.',
-  //   },
-  //   {
-  //     name: 'Bono',
-  //     breed: 'Mixed Breed',
-  //     image:
+
   //       'https://www.kundelek.s2.zetohosting.pl/wp-content/uploads/2024/03/434044739_813703620798669_4580056062047921915_n.jpg',
-  //     description: 'An energetic dog ready to be part of your family.',
-  //   },
-  //   {
-  //     name: 'Charlie',
-  //     breed: 'Mixed Breed',
-  //     image:
+
   //       'https://foto1.napaluchu.waw.pl/reksio/scale/1600/0/files/big/012000441/ab739a9dc7b33cfc.jpg',
-  //     description: 'An energetic dog ready to be part of your family.',
-  //   },
-  // ];
+
   constructor(private router: Router, private fs: FirebaseService) {}
 
   ngOnInit(): void {
@@ -66,7 +44,20 @@ export class DogsPageComponent implements OnInit {
     });
   }
 
+  public get sortedDogs(): Dog[] {
+    return this.dogs.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  }
+
   goToPage(pageAddress: string) {
     this.router.navigate([pageAddress]);
+  }
+
+  deleteDog(id: string, i: number): void {
+    console.log('clicked', id);
+    this.dogs.splice(i, 1);
+    this.fs.deleteDog(id);
   }
 }
