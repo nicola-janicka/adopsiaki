@@ -37,6 +37,8 @@ export class NewDogFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.newDogForm = this.formBuilder.nonNullable.group({
+      dogPictures: new FormArray([]),
+      addPicture: new FormControl(''),
       dname: new FormControl(''),
       dbreed: new FormControl(''),
       dage: new FormControl(''),
@@ -50,6 +52,7 @@ export class NewDogFormComponent implements OnInit {
     console.log(this.newDogForm.value);
     let formValues = this.newDogForm.value;
     let newDog = new Dog(
+      formValues['dogPictures'],
       formValues['dname'],
       formValues['dbreed'],
       formValues['dage'],
@@ -62,5 +65,14 @@ export class NewDogFormComponent implements OnInit {
     this.fs.addDog(newDog);
     this._snackBar.open('Dog added!', 'OK');
     this.newDogForm.reset();
+  }
+
+  get dogPictures() {
+    return this.newDogForm.controls['dogPictures'] as FormArray;
+  }
+  addNewPicture() {
+    let newPicture = this.newDogForm.get('addPicture');
+    this.dogPictures.push(new FormControl(newPicture?.value));
+    this.newDogForm.controls['addPicture'].reset();
   }
 }

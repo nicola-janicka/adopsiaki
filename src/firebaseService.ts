@@ -46,6 +46,7 @@ export class FirebaseService {
         weight: dog.weight,
         description: dog.description,
         createdAt: dog.createdAt,
+        pictures: dog.pictures,
       });
       console.log('Document written with ID: ', docRef.id);
     } catch (e) {
@@ -60,6 +61,7 @@ export class FirebaseService {
       // console.log(doc.id, ' => ', doc.data());
       let data = doc.data();
       let dog = new Dog(
+        data['pictures'],
         data['name'],
         data['breed'],
         data['age'],

@@ -7,7 +7,7 @@ import {
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { FirebaseService } from './../../firebaseService';
 import { Dog } from '../../dog';
 import { OnInit } from '@angular/core';
@@ -21,6 +21,7 @@ import { OnInit } from '@angular/core';
     MatCardModule,
     MatButtonModule,
     NgFor,
+    NgIf,
   ],
   templateUrl: './dogs-page.component.html',
   styleUrl: './dogs-page.component.css',
@@ -59,5 +60,18 @@ export class DogsPageComponent implements OnInit {
     console.log('clicked', id);
     this.dogs.splice(i, 1);
     this.fs.deleteDog(id);
+  }
+
+  dogThumbnail(i: number): string {
+    let dog = this.dogs[i];
+    console.log('PICTURES: ' + dog.pictures);
+
+    if (dog.pictures[0] != undefined) {
+      console.log(dog.pictures[0]);
+      return dog.pictures[0];
+    } else {
+      console.log('nope');
+      return 'nopicture';
+    }
   }
 }

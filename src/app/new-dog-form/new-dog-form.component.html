@@ -1,4 +1,26 @@
 <form [formGroup]="newDogForm" (ngSubmit)="onSubmit()">
+  <label for="addPicture">Link to dog's picture:</label>
+  <input
+    type="text"
+    id="addPicture"
+    name="addPicture"
+    formControlName="addPicture"
+  />
+  <button type="button" (click)="addNewPicture()" class="add_circle">
+    <span class="material-symbols-outlined"> add_circle </span>
+  </button>
+  <div class="row">
+    <div
+      class="addedPictures column"
+      *ngFor="let picture of dogPictures.controls"
+    >
+      <img
+        src="{{ picture?.value }}"
+        alt="dog's picture"
+        class="dog_picture_size"
+      />
+    </div>
+  </div>
   <label for="dname">Dog's name:</label>
   <input type="text" id="dname" name="dname" formControlName="dname" />
   <label for="dbreed">Dog's breed:</label>
