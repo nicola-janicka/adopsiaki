@@ -4,13 +4,15 @@ import {
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { NgFor, NgIf } from '@angular/common';
 import { FirebaseService } from './../../firebaseService';
 import { Dog } from '../../dog';
 import { OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+
 @Component({
   selector: 'app-dogs-page',
   standalone: true,
@@ -22,6 +24,7 @@ import { OnInit } from '@angular/core';
     MatButtonModule,
     NgFor,
     NgIf,
+    MatIconModule,
   ],
   templateUrl: './dogs-page.component.html',
   styleUrl: './dogs-page.component.css',
@@ -60,6 +63,10 @@ export class DogsPageComponent implements OnInit {
     console.log('clicked', id);
     this.dogs.splice(i, 1);
     this.fs.deleteDog(id);
+  }
+
+  editDog(id: string): void {
+    this.router.navigate(['edit-dog/' + id]);
   }
 
   dogThumbnail(i: number): string {

@@ -7,6 +7,7 @@ import { NewDogFormComponent } from './new-dog-form/new-dog-form.component';
 import { SupportUsPageComponent } from './support-us-page/support-us-page.component';
 import { AboutDogComponent } from './about-dog/about-dog.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { EditDogFormComponent } from './edit-dog-form/edit-dog-form.component';
 
 export const routes: Routes = [
   { path: 'adoption-form', component: AdoptionFormComponent },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'support-us', component: SupportUsPageComponent },
   { path: 'about-dog', component: AboutDogComponent },
   { path: 'admin', component: AdminLoginComponent },
+  { path: 'edit-dog/:id', component: EditDogFormComponent },
 ];

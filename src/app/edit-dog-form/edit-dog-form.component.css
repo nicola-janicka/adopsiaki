@@ -1,0 +1,92 @@
+form {
+  display: grid;
+  gap: 15px;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+label {
+  font-weight: bold;
+  font-size: 16px;
+  color: #13237f;
+}
+
+input[type="text"],
+input[type="number"],
+input [type="select"],
+textarea {
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input [type="select"],
+textarea:focus {
+  border-color: #3f51b5;
+  box-shadow: 0 0 6px rgba(63, 81, 181, 0.3);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.add_circle {
+  background-color: transparent;
+  border: transparent;
+  color: #3f51b5;
+}
+
+.add_circle:hover {
+  color: rgb(56, 150, 56);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  display: flex;
+  justify-content: center;
+}
+
+.dog_picture_size {
+  width: 150px;
+  height: auto;
+}
+
+.submit {
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit:hv {
+  background-color: #303f9f;
+}
+
+.submit:focus {
+  outline: none;
+  box-shadow: 0 0 6px rgba(63, 81, 181, 0.3);
+}

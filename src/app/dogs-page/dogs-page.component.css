@@ -74,3 +74,16 @@
 .remove-button:hover {
   color: #940a21;
 }
+
+.edit-button {
+  background-color: transparent;
+  border: transparent;
+  color: #3f51b5;
+}
+
+.edit-button:hover {
+  color: #253181;
+}
+.action-buttons {
+  justify-content: right;
+}

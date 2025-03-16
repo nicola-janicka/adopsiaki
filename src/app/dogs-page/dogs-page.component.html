@@ -19,9 +19,18 @@
       <button (click)="goToPage('/about-dog')" mat-button class="info-button">
         More info
       </button>
-      <button (click)="deleteDog(dog.id, i)" class="remove-button">
-        <span class="material-symbols-outlined"> delete </span>
-      </button>
+      <div class="action-buttons">
+        <button type="button" (click)="editDog(dog.id)" class="edit-button">
+          <span class="material-symbols-outlined"> edit </span>
+        </button>
+        <button
+          type="button"
+          (click)="deleteDog(dog.id, i)"
+          class="remove-button"
+        >
+          <span class="material-symbols-outlined"> delete </span>
+        </button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>
