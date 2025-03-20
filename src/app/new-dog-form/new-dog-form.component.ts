@@ -33,38 +33,51 @@ export class NewDogFormComponent implements OnInit {
 
   private _snackBar = inject(MatSnackBar);
 
+  invalidFields = new Map<string, boolean>();
+
   constructor(private formBuilder: FormBuilder, private fs: FirebaseService) {}
 
   ngOnInit(): void {
     this.newDogForm = this.formBuilder.nonNullable.group({
-      dogPictures: new FormArray([]),
-      addPicture: new FormControl(''),
-      dname: new FormControl(''),
-      dbreed: new FormControl(''),
-      dage: new FormControl(''),
-      dgender: new FormControl(''),
-      dweight: new FormControl(''),
-      ddescription: new FormControl(''),
+      dogPictures: new FormArray([], [Validators.required]),
+      addPicture: new FormControl('', [Validators.required]),
+      dname: new FormControl('', [Validators.required]),
+      dbreed: new FormControl('', [Validators.required]),
+      dage: new FormControl('', [Validators.required]),
+      dgender: new FormControl('', [Validators.required]),
+      dweight: new FormControl('', [Validators.required]),
+      ddescription: new FormControl('', [Validators.required]),
+    });
+
+    Object.keys(this.newDogForm.controls).forEach((key: string) => {
+      this.invalidFields.set(key, true);
     });
   }
 
   async onSubmit() {
-    console.log(this.newDogForm.value);
-    let formValues = this.newDogForm.value;
-    let newDog = new Dog(
-      formValues['dogPictures'],
-      formValues['dname'],
-      formValues['dbreed'],
-      formValues['dage'],
-      formValues['dgender'],
-      formValues['dweight'],
-      formValues['ddescription'],
-      new Date()
-    );
-    console.log(newDog);
-    this.fs.addDog(newDog);
-    this._snackBar.open('Dog added!', 'OK');
-    this.newDogForm.reset();
+    if (this.newDogForm.valid) {
+      console.log(this.newDogForm.value);
+      let formValues = this.newDogForm.value;
+      let newDog = new Dog(
+        formValues['dogPictures'],
+        formValues['dname'],
+        formValues['dbreed'],
+        formValues['dage'],
+        formValues['dgender'],
+        formValues['dweight'],
+        formValues['ddescription'],
+        new Date()
+      );
+      console.log(newDog);
+      this.fs.addDog(newDog);
+      this._snackBar.open('Dog added!', 'OK');
+      this.newDogForm.reset();
+    } else {
+      Object.keys(this.newDogForm.controls).forEach((key: string) => {
+        this.invalidFields.set(key, this.newDogForm.controls[key].valid);
+      });
+      this._snackBar.open('Form is not valid!', 'OK');
+    }
   }
 
   get dogPictures() {
