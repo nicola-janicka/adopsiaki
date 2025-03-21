@@ -43,10 +43,19 @@ export class NewDogFormComponent implements OnInit {
       addPicture: new FormControl('', [Validators.required]),
       dname: new FormControl('', [Validators.required]),
       dbreed: new FormControl('', [Validators.required]),
-      dage: new FormControl('', [Validators.required]),
+      dage: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[0-9]'),
+      ]),
       dgender: new FormControl('', [Validators.required]),
-      dweight: new FormControl('', [Validators.required]),
-      ddescription: new FormControl('', [Validators.required]),
+      dweight: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[0-9]'),
+      ]),
+      ddescription: new FormControl('', [
+        Validators.required,
+        Validators.minLength(20),
+      ]),
     });
 
     Object.keys(this.newDogForm.controls).forEach((key: string) => {
@@ -87,5 +96,9 @@ export class NewDogFormComponent implements OnInit {
     let newPicture = this.newDogForm.get('addPicture');
     this.dogPictures.push(new FormControl(newPicture?.value));
     this.newDogForm.controls['addPicture'].reset();
+  }
+
+  deletePicture(index: number) {
+    this.dogPictures.removeAt(index);
   }
 }

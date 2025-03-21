@@ -17,14 +17,17 @@
   </button>
   <div class="row">
     <div
-      class="addedPictures column"
-      *ngFor="let picture of dogPictures.controls"
+      class="column"
+      *ngFor="let picture of dogPictures.controls; index as i"
     >
       <img
         src="{{ picture?.value }}"
         alt="dog's picture"
         class="dog_picture_size"
       />
+      <button type="button" (click)="deletePicture(i)" class="remove-button">
+        <span class="material-symbols-outlined"> delete </span>
+      </button>
     </div>
   </div>
   <label for="dname">Dog's name:</label>
