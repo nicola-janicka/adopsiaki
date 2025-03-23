@@ -1,37 +1,32 @@
 <div class="dog-adoption-container">
   <div class="dog-photo">
-    <img
-      src="https://www.kundelek.s2.zetohosting.pl/alex/467211437_975720694596960_8437642344523265684_n/"
-      alt="Photo of Alex"
-    />
+    <img src="{{ dog.pictures[0] }}" alt="Photo of {{ dog.name }}" />
   </div>
   <div class="dog-summary">
-    <h1 class="title">Alex</h1>
+    <h1 class="title">{{ dog.name }}</h1>
   </div>
   <div class="dog-details">
     <div class="dog-info">
       <i class="fa-solid fa-cake-candles icon"></i>
-      Age: 2 years
+      Age: {{ dog.age }}
     </div>
     <div class="dog-info">
       <i class="fa-solid fa-mars icon"></i>
-      Gender: Male
+      Gender: {{ dog.gender }}
     </div>
     <div class="dog-info">
       <i class="fa-solid fa-weight-scale icon"></i>
-      Weight: 12 kg
+      Weight: {{ dog.weight }} kg
     </div>
   </div>
   <div class="dog-description">
     <p>
-      Alex is a sweet and energetic mixed-breed dog looking for a loving home.
-      He loves playing outdoors and enjoys lots of cuddles. Perfect for families
-      or active individuals. Alex is friendly with children and gets along well
-      with other dogs. If you are looking for a loyal companion, Alex could be
-      the perfect fit for you!
+      {{ dog.description }}
     </p>
   </div>
   <div class="actions">
-    <button class="info-button">Adoption Form</button>
+    <button class="info-button" (click)="goToAdoptionPage(dog.id)">
+      Adoption Form
+    </button>
   </div>
 </div>

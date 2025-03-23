@@ -16,7 +16,11 @@
       <p class="description">{{ dog.description }}</p>
     </mat-card-content>
     <mat-card-actions class="actions">
-      <button (click)="goToPage('/about-dog')" mat-button class="info-button">
+      <button
+        (click)="goToPage('/about-dog/' + dog.id)"
+        mat-button
+        class="info-button"
+      >
         More info
       </button>
       <div class="action-buttons">
