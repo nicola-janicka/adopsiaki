@@ -64,3 +64,26 @@
 .info-button:hover {
   background-color: #303f9f;
 }
+
+.remove-button {
+  background-color: transparent;
+  border: transparent;
+  color: #da3752;
+}
+
+.remove-button:hover {
+  color: #940a21;
+}
+
+.edit-button {
+  background-color: transparent;
+  border: transparent;
+  color: #3f51b5;
+}
+
+.edit-button:hover {
+  color: #253181;
+}
+.action-buttons {
+  justify-content: right;
+}

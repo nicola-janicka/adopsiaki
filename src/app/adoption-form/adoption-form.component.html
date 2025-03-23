@@ -1,1 +1,20 @@
-<h2>Adoption form</h2>
+<form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()">
+  <label for="dage">Dog's name:</label>
+  <input type="text" id="dname" name="dname" formControlName="dname" />
+  <label for="fullname">You full name:</label>
+  <input type="text" id="fullname" name="fullname" formControlName="fullname" />
+  <label for="age">Your e-mail address:</label>
+  <input type="email" id="email" name="email" formControlName="email" />
+  <label for="age">Your age:</label>
+  <input type="number" id="age" name="age" formControlName="age" />
+
+  <label for="experience">Describe your experience with dogs:</label>
+  <textarea
+    class="experience"
+    id="experience"
+    name="experience"
+    formControlName="experience"
+  ></textarea>
+
+  <button type="submit" class="submit">Submit</button>
+</form>

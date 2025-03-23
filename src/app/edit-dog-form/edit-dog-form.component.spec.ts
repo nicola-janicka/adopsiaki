@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewDogFormComponent } from './new-dog-form.component';
+import { EditDogFormComponent } from './edit-dog-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('NewDogFormComponent', () => {
-  let component: NewDogFormComponent;
-  let fixture: ComponentFixture<NewDogFormComponent>;
+  let component: EditDogFormComponent;
+  let fixture: ComponentFixture<EditDogFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NewDogFormComponent, BrowserAnimationsModule],
+      imports: [EditDogFormComponent, BrowserAnimationsModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NewDogFormComponent);
+    fixture = TestBed.createComponent(EditDogFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
