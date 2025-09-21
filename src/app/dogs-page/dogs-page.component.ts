@@ -13,11 +13,13 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [MatCardModule, MatButtonModule, NgFor, MatIconModule],
   templateUrl: './dogs-page.component.html',
-  styleUrl: './dogs-page.component.css',
+  styleUrls: ['./dogs-page.component.css'],
 })
 export class DogsPageComponent implements OnInit {
-  dogs: Dog[] = [];
-  constructor(private router: Router, private fs: FirebaseService) {}
+  dogs: Dog[];
+  constructor(private router: Router, private fs: FirebaseService) {
+    this.dogs = [];
+  }
 
   ngOnInit(): void {
     console.log('1. Inicjalizacja komponentu');
@@ -26,17 +28,21 @@ export class DogsPageComponent implements OnInit {
       .then((dogs) => {
         this.dogs = dogs;
         console.log(`2. Psy pobrane (${this.dogs.length})`);
+        this.dogs.forEach((dog) => {
+          console.log(dog.name);
+        });
       })
       .catch((err) => console.error('Error in getDogs', err));
   }
 
-  public get sortedDogs(): Dog[] {
-    console.log('3. Sortowanie psów');
-    return [...this.dogs].sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-  }
+  // public get sortedDogs(): Dog[] {
+  //   console.log('3. Sortowanie psów');
+  //   console.log(this.dogs.map((d) => d.createdAt));
+  //   return [...this.dogs].sort(
+  //     (a, b) =>
+  //       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  //   );
+  // }
 
   goToPage(pageAddress: string) {
     this.router.navigate([pageAddress]);
@@ -60,13 +66,8 @@ export class DogsPageComponent implements OnInit {
     console.log(`4. Tworzenie miniaturki (${i})`);
     let dog = this.dogs[i];
     // console.log('PICTURES: ' + dog.pictures);
-
-    if (dog.pictures[0] != undefined) {
-      // console.log(dog.pictures[0]);
-      return dog.pictures[0];
-    } else {
-      console.log('nope');
-      return 'nopicture';
-    }
+    return dog.pictures && dog.pictures.length > 0
+      ? dog.pictures[0]
+      : 'nopicture';
   }
 }
