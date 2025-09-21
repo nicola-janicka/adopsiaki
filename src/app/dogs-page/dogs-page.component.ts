@@ -48,10 +48,6 @@ export class DogsPageComponent implements OnInit {
     this.router.navigate([pageAddress]);
   }
 
-  trackById(index: number, dog: Dog): string {
-    return dog.id;
-  }
-
   deleteDog(id: string, i: number): void {
     console.log('clicked', id);
     this.dogs.splice(i, 1);
