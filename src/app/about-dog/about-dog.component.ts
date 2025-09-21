@@ -1,20 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  RouterOutlet,
-  RouterLink,
-  RouterLinkActive,
-  Router,
-} from '@angular/router';
-import { FooterComponent } from '../footer/footer.component';
+import { Router } from '@angular/router';
 import { FirebaseService } from '../../firebaseService';
 import { ActivatedRoute } from '@angular/router';
 import { Dog } from '../../dog';
-import { AdoptionForm } from '../../adoptionForm';
 
 @Component({
   selector: 'app-about-dog',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, FooterComponent],
   templateUrl: './about-dog.component.html',
   styleUrl: './about-dog.component.css',
 })

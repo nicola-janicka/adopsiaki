@@ -1,25 +1,13 @@
 import { Component } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  Router,
-  RouterLink,
-  RouterLinkActive,
-  RouterOutlet,
-} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-menu-bar',
   standalone: true,
-  imports: [
-    MatMenuModule,
-    MatButtonModule,
-    RouterLink,
-    RouterLinkActive,
-    RouterOutlet,
-    NgFor,
-  ],
+  imports: [MatMenuModule, MatButtonModule, RouterLink, NgFor],
   templateUrl: './menu-bar.component.html',
   styleUrl: './menu-bar.component.css',
 })

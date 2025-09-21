@@ -1,16 +1,10 @@
-import {
-  RouterOutlet,
-  RouterLink,
-  RouterLinkActive,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
 import {
   FormGroup,
   FormControl,
   FormArray,
   ReactiveFormsModule,
-  Validators,
   FormsModule,
   FormBuilder,
 } from '@angular/forms';
@@ -23,14 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-new-dog-form',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
-    FormsModule,
-    CommonModule,
-    ReactiveFormsModule,
-  ],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './edit-dog-form.component.html',
   styleUrl: './edit-dog-form.component.css',
 })

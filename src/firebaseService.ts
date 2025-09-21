@@ -6,9 +6,9 @@ import {
   getDocs,
   getDoc,
   doc,
-  QuerySnapshot,
   deleteDoc,
   updateDoc,
+  Timestamp,
 } from 'firebase/firestore';
 import { Injectable } from '@angular/core';
 import { Dog } from './dog';
@@ -16,10 +16,24 @@ import { query } from 'firebase/firestore';
 import { where } from 'firebase/firestore';
 import { Admin } from './admin';
 import { AdoptionForm } from './adoptionForm';
-import { Observable } from 'rxjs';
+
+import { configDotenv } from 'dotenv';
+
+configDotenv();
+
+interface DogDocument {
+  age: number;
+  breed: string;
+  createdAt: Timestamp;
+  description: string;
+  gender: string;
+  name: string;
+  pictures: string[];
+  weight: number;
+}
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyA91XeK7UDUK1BUtoCElPuMOEeLfCxJCso',
+  apiKey: process.env['FIREBASE_KEY'],
   authDomain: 'adopsiaki.firebaseapp.com',
   projectId: 'adopsiaki',
   storageBucket: 'adopsiaki.firebasestorage.app',
@@ -59,21 +73,20 @@ export class FirebaseService {
     let dogsList: Dog[] = [];
     const querySnapshot = await getDocs(collection(db, 'dogs'));
     querySnapshot.forEach((doc) => {
-      let data = doc.data();
+      let data = doc.data() as DogDocument;
       let dog = new Dog(
-        data['pictures'],
-        data['name'],
-        data['breed'],
-        data['age'],
-        data['gender'],
-        data['weight'],
-        data['description'],
-        new Date(data['createdAt'])
+        data.pictures,
+        data.name,
+        data.breed,
+        data.age,
+        data.gender,
+        data.weight,
+        data.description,
+        data.createdAt.toDate()
       );
       dog.setID(doc.id);
       dogsList.push(dog);
     });
-    console.log(dogsList);
     return dogsList;
   }
 
