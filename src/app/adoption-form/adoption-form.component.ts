@@ -1,11 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import {
   FormGroup,
   FormControl,
-  FormArray,
   ReactiveFormsModule,
-  Validators,
   FormsModule,
   FormBuilder,
 } from '@angular/forms';
@@ -16,13 +13,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+
+import { ActivatedRoute } from '@angular/router';
+import { Dog } from '../../dog';
 @Component({
   selector: 'app-adoption-form',
   standalone: true,
   imports: [
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
@@ -38,9 +35,16 @@ export class AdoptionFormComponent implements OnInit {
 
   private _snackBar = inject(MatSnackBar);
 
-  constructor(private formBuilder: FormBuilder, private fs: FirebaseService) {}
+  dog!: Dog;
+  constructor(
+    private formBuilder: FormBuilder,
+    private fs: FirebaseService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
     this.adoptionForm = this.formBuilder.nonNullable.group({
       dname: new FormControl(''),
       fullname: new FormControl(''),
@@ -48,6 +52,13 @@ export class AdoptionFormComponent implements OnInit {
       age: new FormControl(''),
       experience: new FormControl(''),
     });
+
+    if (id !== null) {
+      this.fs.getDog(id).then((dog: Dog) => {
+        this.dog = dog;
+        this.adoptionForm.controls['dname'].setValue(this.dog.name);
+      });
+    }
   }
 
   onSubmit() {

@@ -12,8 +12,10 @@
   max-width: 100%;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff; /* dodaj tło */
+  padding: 10px;
 }
 
 .dog-card:hover {

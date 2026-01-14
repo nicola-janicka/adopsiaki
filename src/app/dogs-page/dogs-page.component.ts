@@ -1,13 +1,8 @@
-import {
-  Router,
-  RouterOutlet,
-  RouterLink,
-  RouterLinkActive,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { FirebaseService } from './../../firebaseService';
 import { Dog } from '../../dog';
 import { OnInit } from '@angular/core';
@@ -16,44 +11,38 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-dogs-page',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
-    MatCardModule,
-    MatButtonModule,
-    NgFor,
-    NgIf,
-    MatIconModule,
-  ],
+  imports: [MatCardModule, MatButtonModule, NgFor, MatIconModule],
   templateUrl: './dogs-page.component.html',
-  styleUrl: './dogs-page.component.css',
+  styleUrls: ['./dogs-page.component.css'],
 })
 export class DogsPageComponent implements OnInit {
-  dogs: Dog[] = [];
-
-  //       'https://www.kundelek.s2.zetohosting.pl/alex/467211437_975720694596960_8437642344523265684_n/',
-
-  //       'https://www.kundelek.s2.zetohosting.pl/wp-content/uploads/2024/12/471229267_1003780548457641_4068007170708030490_n.jpg',
-
-  //       'https://www.kundelek.s2.zetohosting.pl/wp-content/uploads/2024/03/434044739_813703620798669_4580056062047921915_n.jpg',
-
-  //       'https://foto1.napaluchu.waw.pl/reksio/scale/1600/0/files/big/012000441/ab739a9dc7b33cfc.jpg',
-
-  constructor(private router: Router, private fs: FirebaseService) {}
+  dogs: Dog[];
+  constructor(private router: Router, private fs: FirebaseService) {
+    this.dogs = [];
+  }
 
   ngOnInit(): void {
-    this.fs.getDogs().then((dogs) => {
-      this.dogs = dogs;
-    });
+    console.log('1. Inicjalizacja komponentu');
+    this.fs
+      .getDogs()
+      .then((dogs) => {
+        this.dogs = dogs;
+        console.log(`2. Psy pobrane (${this.dogs.length})`);
+        this.dogs.forEach((dog) => {
+          console.log(dog.name);
+        });
+      })
+      .catch((err) => console.error('Error in getDogs', err));
   }
 
-  public get sortedDogs(): Dog[] {
-    return this.dogs.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-  }
+  // public get sortedDogs(): Dog[] {
+  //   console.log('3. Sortowanie psów');
+  //   console.log(this.dogs.map((d) => d.createdAt));
+  //   return [...this.dogs].sort(
+  //     (a, b) =>
+  //       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  //   );
+  // }
 
   goToPage(pageAddress: string) {
     this.router.navigate([pageAddress]);
@@ -70,15 +59,11 @@ export class DogsPageComponent implements OnInit {
   }
 
   dogThumbnail(i: number): string {
+    console.log(`4. Tworzenie miniaturki (${i})`);
     let dog = this.dogs[i];
-    console.log('PICTURES: ' + dog.pictures);
-
-    if (dog.pictures[0] != undefined) {
-      console.log(dog.pictures[0]);
-      return dog.pictures[0];
-    } else {
-      console.log('nope');
-      return 'nopicture';
-    }
+    // console.log('PICTURES: ' + dog.pictures);
+    return dog.pictures && dog.pictures.length > 0
+      ? dog.pictures[0]
+      : 'nopicture';
   }
 }

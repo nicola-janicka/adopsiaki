@@ -11,12 +11,13 @@ import { EditDogFormComponent } from './edit-dog-form/edit-dog-form.component';
 
 export const routes: Routes = [
   { path: 'adoption-form', component: AdoptionFormComponent },
+  { path: 'adoption-form/:id', component: AdoptionFormComponent },
   { path: 'adoption', component: AdoptionPageComponent },
   { path: 'dogs', component: DogsPageComponent },
   { path: 'home', component: MainPageComponent },
   { path: 'new-dog-form', component: NewDogFormComponent },
   { path: 'support-us', component: SupportUsPageComponent },
-  { path: 'about-dog', component: AboutDogComponent },
+  { path: 'about-dog/:id', component: AboutDogComponent },
   { path: 'admin', component: AdminLoginComponent },
   { path: 'edit-dog/:id', component: EditDogFormComponent },
 ];
